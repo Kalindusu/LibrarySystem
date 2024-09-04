@@ -3,18 +3,20 @@ package com.PersonalProject.library.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="author")
+@Table(name = "author")
 public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name= "author_id",length = 11)
-    private int authorid;
 
-    @Column(name = "name",length = 45)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Use IDENTITY for auto-increment
+    @Column(name = "author_id") // Length not needed for integers
+    private int authorId;
+
+    @Column(name = "name", length = 45)
     private String name;
 
-    public Author(int authorid, String name) {
-        this.authorid = authorid;
+    // Constructors
+    public Author(int authorId, String name) {
+        this.authorId = authorId;
         this.name = name;
     }
 
@@ -25,12 +27,13 @@ public class Author {
     public Author() {
     }
 
-    public int getAuthorid() {
-        return authorid;
+    // Getters and Setters
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthorid(int authorid) {
-        this.authorid = authorid;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
     public String getName() {
@@ -44,7 +47,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "authorid=" + authorid +
+                "authorId=" + authorId +
                 ", name='" + name + '\'' +
                 '}';
     }
