@@ -7,10 +7,9 @@ import jakarta.persistence.*;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Use IDENTITY for auto-increment
-    @Column(name = "author_id") // Length not needed for integers
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "author_id")
     private int authorId;
-
     @Column(name = "name", length = 45)
     private String name;
 
