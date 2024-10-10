@@ -1,7 +1,9 @@
 package com.PersonalProject.library.Controller;
 
 import com.PersonalProject.library.dto.AuthorSaveDTO;
+import com.PersonalProject.library.dto.PublisherSaveDTO;
 import com.PersonalProject.library.service.AuthorService;
+import com.PersonalProject.library.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class PublisherController {
 
     @Autowired
-    private AuthorService authorService;
+    private PublisherService publisherService;
     @PostMapping(path="/save")
-    public String saveAuthor(@RequestBody AuthorSaveDTO authorsaveDTO)
+    public String savePublisher(@RequestBody PublisherSaveDTO publisherSaveDTO)
     {
-        String   authorname=authorService.addAuthor(authorsaveDTO);
+        String   publishername=publisherService.addPublisher(publisherSaveDTO);
         return  "Added Successfully";
     }
 }
