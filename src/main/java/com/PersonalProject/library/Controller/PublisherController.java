@@ -1,11 +1,13 @@
 package com.PersonalProject.library.Controller;
 
-import com.PersonalProject.library.dto.AuthorSaveDTO;
+import com.PersonalProject.library.dto.AuthorDTO;
+import com.PersonalProject.library.dto.PublisherDTO;
 import com.PersonalProject.library.dto.PublisherSaveDTO;
-import com.PersonalProject.library.service.AuthorService;
 import com.PersonalProject.library.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -20,4 +22,12 @@ public class PublisherController {
         String   publishername=publisherService.addPublisher(publisherSaveDTO);
         return  "Added Successfully";
     }
+
+    @GetMapping(path="/getAllPublisher")
+    public List<PublisherDTO> getAllAuthor()
+    {
+        List<PublisherDTO> allPublishers=publisherService.getAllPublisher();
+        return allPublishers;
+    }
+
 }
