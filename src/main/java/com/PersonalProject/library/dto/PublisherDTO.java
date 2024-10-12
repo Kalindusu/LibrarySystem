@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class PublisherDTO {
-       private int authorId;
+        private int publisher_id;
         private String name;
 }
