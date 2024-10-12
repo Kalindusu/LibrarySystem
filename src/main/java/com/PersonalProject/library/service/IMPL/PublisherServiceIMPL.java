@@ -1,11 +1,17 @@
 package com.PersonalProject.library.service.IMPL;
 
+import com.PersonalProject.library.dto.AuthorDTO;
+import com.PersonalProject.library.dto.PublisherDTO;
 import com.PersonalProject.library.dto.PublisherSaveDTO;
+import com.PersonalProject.library.entity.Author;
 import com.PersonalProject.library.entity.Publisher;
 import com.PersonalProject.library.repo.PublisherRepo;
 import com.PersonalProject.library.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PublisherServiceIMPL implements PublisherService {
@@ -19,5 +25,20 @@ public class PublisherServiceIMPL implements PublisherService {
             publisherRepo.save(publisher);
             return publisher.getName();
 
+    }
+
+    @Override
+    public List<PublisherDTO> getAllPublisher() {
+        List<Publisher> getPublishers = publisherRepo.findAll();
+        List<PublisherDTO> publisherDTOList = new ArrayList<>();
+
+        for (Publisher publisher : getPublishers) {
+            PublisherDTO  publisherDTO = new PublisherDTO(
+                    publisher.getPublisher_id(),
+                    publisher.getName()
+            );
+            publisherDTOList.add(publisherDTO);
+        }
+        return publisherDTOList;
     }
 }
