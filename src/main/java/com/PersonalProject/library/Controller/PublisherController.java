@@ -1,8 +1,6 @@
 package com.PersonalProject.library.Controller;
 
-import com.PersonalProject.library.dto.AuthorDTO;
-import com.PersonalProject.library.dto.PublisherDTO;
-import com.PersonalProject.library.dto.PublisherSaveDTO;
+import com.PersonalProject.library.dto.*;
 import com.PersonalProject.library.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +26,15 @@ public class PublisherController {
     {
         List<PublisherDTO> allPublishers=publisherService.getAllPublisher();
         return allPublishers;
+    }
+
+    @PutMapping(path="/update")
+
+    public String updatePublisher(@RequestBody PublisherUpdateDTO publisherUpdateDTO)
+
+    {
+        String publishername=publisherService.updatePublisher(publisherUpdateDTO);
+        return  publishername;
     }
 
 }

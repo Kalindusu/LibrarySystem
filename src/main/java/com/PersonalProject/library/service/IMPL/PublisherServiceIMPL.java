@@ -3,6 +3,7 @@ package com.PersonalProject.library.service.IMPL;
 import com.PersonalProject.library.dto.AuthorDTO;
 import com.PersonalProject.library.dto.PublisherDTO;
 import com.PersonalProject.library.dto.PublisherSaveDTO;
+import com.PersonalProject.library.dto.PublisherUpdateDTO;
 import com.PersonalProject.library.entity.Author;
 import com.PersonalProject.library.entity.Publisher;
 import com.PersonalProject.library.repo.PublisherRepo;
@@ -40,5 +41,10 @@ public class PublisherServiceIMPL implements PublisherService {
             publisherDTOList.add(publisherDTO);
         }
         return publisherDTOList;
+    }
+
+    @Override
+    public String updatePublisher(PublisherUpdateDTO publisherUpdateDTO) {
+        return null;
     }
 }
