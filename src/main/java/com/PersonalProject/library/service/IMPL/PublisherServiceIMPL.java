@@ -8,11 +8,13 @@ import com.PersonalProject.library.entity.Author;
 import com.PersonalProject.library.entity.Publisher;
 import com.PersonalProject.library.repo.PublisherRepo;
 import com.PersonalProject.library.service.PublisherService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PublisherServiceIMPL implements PublisherService {
@@ -45,17 +47,25 @@ public class PublisherServiceIMPL implements PublisherService {
 
     @Override
     public String updatePublisher(PublisherUpdateDTO publisherUpdateDTO) {
+        // Check if publisher exists
+        Optional<Publisher> optionalPublisher = publisherRepo.findById(publisherUpdateDTO.getPublisher_id());
 
-        if (publisherRepo.existsById(publisherUpdateDTO.getPublisher_id())) {
+        if (optionalPublisher.isPresent()) {
+            // Get the existing publisher
+            Publisher publisher = optionalPublisher.get();
 
-            Publisher publisher = publisherRepo.getById(publisherUpdateDTO.getPublisher_id());
-           publisher.setName(publisherUpdateDTO.getName());
+            // Update the publisher fields
+            publisher.setName(publisherUpdateDTO.getName());
+
+            // Save the updated publisher back to the repository
             publisherRepo.save(publisher);
+
+            // Return updated publisher's name
             return publisher.getName();
         } else {
-            System.out.println("publisher not Exist.....");
+            // Handle case where publisher does not exist
+            throw new EntityNotFoundException("Publisher with ID " + publisherUpdateDTO.getPublisher_id() + " does not exist.");
         }
-        return null;
-
     }
+
 }
