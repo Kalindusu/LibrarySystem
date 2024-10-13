@@ -45,6 +45,17 @@ public class PublisherServiceIMPL implements PublisherService {
 
     @Override
     public String updatePublisher(PublisherUpdateDTO publisherUpdateDTO) {
+
+        if (publisherRepo.existsById(publisherUpdateDTO.getPublisher_id())) {
+
+            Publisher publisher = publisherRepo.getById(publisherUpdateDTO.getPublisher_id());
+           publisher.setName(publisherUpdateDTO.getName());
+            publisherRepo.save(publisher);
+            return publisher.getName();
+        } else {
+            System.out.println("publisher not Exist.....");
+        }
         return null;
+
     }
 }
