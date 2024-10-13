@@ -68,4 +68,16 @@ public class PublisherServiceIMPL implements PublisherService {
         }
     }
 
+    @Override
+    public String deletePublisher(int id) {
+
+
+            if(publisherRepo.existsById(id))
+            {
+                publisherRepo.deleteById(id);
+            }else{
+                System.out.println("Publisher not found");
+            }
+            return null;
+        }
 }
