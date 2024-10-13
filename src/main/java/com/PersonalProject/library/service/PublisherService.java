@@ -13,4 +13,6 @@ public interface PublisherService {
     List<PublisherDTO> getAllPublisher();
 
     String updatePublisher(PublisherUpdateDTO publisherUpdateDTO);
+
+    String deletePublisher(int id);
 }
