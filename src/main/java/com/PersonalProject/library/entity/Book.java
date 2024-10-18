@@ -2,6 +2,8 @@ package com.PersonalProject.library.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="book")
 public class Book {
@@ -19,6 +21,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="Publisher_id")
     private Publisher publisher;
+
+    @OneToMany(mappedBy="book")
+    private Set<Borrow> borrows;
 
     public Book(int bookid, String title, Author author, Publisher publisher) {
         this.bookid = bookid;
