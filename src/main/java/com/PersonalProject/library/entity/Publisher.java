@@ -2,6 +2,8 @@ package com.PersonalProject.library.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="publisher")
 public class Publisher {
@@ -11,6 +13,10 @@ public class Publisher {
     private int publisher_id;
 @Column(name="Publisher_name")
     private String name;
+
+
+    @OneToMany(mappedBy = "publisher")
+    private Set<Book> books;
 
     public Publisher(String name) {
         this.name = name;
