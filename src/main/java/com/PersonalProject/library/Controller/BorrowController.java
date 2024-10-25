@@ -32,10 +32,18 @@ public class BorrowController {
     }
 
     @PutMapping(path = "/update")
-    public String updateBorrow(@RequestBody BorrowUpdateDTO borrowUpdateDTO)
-    {
-        String borrow = borrowService.updateBorrow(borrowUpdateDTO);
-        return  "Update added";
+    public String updateBorrow(@RequestBody BorrowUpdateDTO borrowUpdateDTO) {
+        String result = borrowService.updateBorrow(borrowUpdateDTO);
+        return result != null ? result : "Failed to update borrow record.";
     }
+
+    @DeleteMapping(path = "/delete/{id}")
+    public String deleteBorrow(@PathVariable int id) {
+        String result = borrowService.deleteBorrow(id);
+        return result != null ? result : "Failed to delete borrow record.";
+    }
+
+
+
 
 }
