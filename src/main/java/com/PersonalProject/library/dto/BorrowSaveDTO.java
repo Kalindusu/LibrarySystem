@@ -14,7 +14,7 @@ public class BorrowSaveDTO {
 
 
     private int book_id;
-    private int user_id;
+    private String user_id;
     private LocalDate borrowDate;
     private LocalDate returnDate;
 }
