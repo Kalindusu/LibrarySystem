@@ -12,4 +12,7 @@ public interface BorrowService {
     List<BorrowDTO> getAllBorrow();
 
     String updateBorrow(BorrowUpdateDTO borrowUpdateDTO);
+
+
+    String deleteBorrow(int id);
 }
