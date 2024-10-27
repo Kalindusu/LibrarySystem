@@ -3,7 +3,9 @@ package com.PersonalProject.library.service.IMPL;
 import com.PersonalProject.library.dto.BorrowDTO;
 import com.PersonalProject.library.dto.BorrowSaveDTO;
 import com.PersonalProject.library.dto.BorrowUpdateDTO;
+import com.PersonalProject.library.entity.Book;
 import com.PersonalProject.library.entity.Borrow;
+import com.PersonalProject.library.entity.User;
 import com.PersonalProject.library.repo.BookRepo;
 import com.PersonalProject.library.repo.BorrowRepo;
 import com.PersonalProject.library.repo.UserRepo;
@@ -69,30 +71,54 @@ public class BorrowServiceIMPL implements BorrowService {
 
     @Override
     public String updateBorrow(BorrowUpdateDTO borrowUpdateDTO) {
-
         try {
-
-
             if (borrowRepo.existsById(borrowUpdateDTO.getId())) {
                 Borrow borrow = borrowRepo.getById(borrowUpdateDTO.getId());
-                borrow.setBook(bookRepo.getById(borrowUpdateDTO.getBook_id()));
-                borrow.setUser(userRepo.getById(borrowUpdateDTO.getUser_id()));
+
+                // Check if book exists in bookRepo
+                Book book = bookRepo.findById(borrowUpdateDTO.getBook_id())
+                        .orElse(null);
+                if (book == null) {
+                    return "Book ID Not Found.";
+                }
+
+                // Check if user exists in userRepo
+                User user = userRepo.findById(borrowUpdateDTO.getUser_id())
+                        .orElse(null);
+                if (user == null) {
+                    return "User ID Not Found.";
+                }
+
+                borrow.setBook(book);
+                borrow.setUser(user);
                 borrow.setBorrowDate(borrowUpdateDTO.getBorrowDate());
                 borrow.setReturnDate(borrowUpdateDTO.getReturnDate());
 
                 borrowRepo.save(borrow);
 
                 return "Borrow updated successfully.";
-
             } else {
-                System.out.println("Borrow ID Not Found");
+                return "Borrow ID Not Found.";
             }
-
         } catch (Exception ex) {
-            System.out.println(ex);
+            ex.printStackTrace(); // Consider logging the error
+            return "An error occurred while updating borrow: " + ex.getMessage();
         }
-        return null;
-
-
     }
+
+    @Override
+    public String deleteBorrow(int id) {
+        try {
+            if (borrowRepo.existsById(id)) {
+                borrowRepo.deleteById(id);
+                return "Borrow record deleted successfully.";
+            } else {
+                return "Borrow ID Not Found.";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace(); // Consider logging the error
+            return "An error occurred while deleting borrow: " + ex.getMessage();
+        }
+    }
+
 }
