@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class BorrowUpdateDTO {
     private int id;
     private int book_id;
-    private int user_id;
+    private String user_id;
     private LocalDate borrowDate;
     private LocalDate returnDate;
 }
