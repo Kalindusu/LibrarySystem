@@ -65,7 +65,7 @@ public class UserServiceIMPL implements UserService {
         {
             userRepo.deleteById(id);
         }else{
-            System.out.println("User not found");
+            System.out.println("User not Found");
         }
         return null;
     }
