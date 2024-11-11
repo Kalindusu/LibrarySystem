@@ -35,7 +35,7 @@ const response=await fetch("",{
 
 const data=await response.json();
 console.log("Employee created",data);
-alert("Employee created sussesfully")
+alert("Books Added Succesfully")
 navigate("/")
     }catch(error){
         alert("Error in adding employee")
