@@ -38,7 +38,7 @@ console.log("Employee created",data);
 alert("Books Added Succesfully")
 navigate("/")
     }catch(error){
-        alert("Error in adding employee")
+        alert("Error in adding books")
         console.log("Error message")
 
     }
