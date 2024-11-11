@@ -74,19 +74,6 @@ navigate("/")
             onChange={handleInputChange} 
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicDepartment">
-        <Form.Label>Department</Form.Label>
-          <Form.Select
-            type="text"
-            placeholder="Enter Department"
-            name="department"
-            value={formData.department}
-           onChange={handleInputChange} >
-    <option value="HR">HR</option>
-    <option value="IT">IT</option>
-    <option value="Accountant">Accountant</option>
-    </Form.Select>
-        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Control
             type="password"
