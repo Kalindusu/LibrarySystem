@@ -10,9 +10,8 @@ const Register = () => {
     id:"",
     name: "",
     email: "",
-   
-    department: "",
-    password:""
+    password:"",
+    confirmPassword:""
     
   });
 
