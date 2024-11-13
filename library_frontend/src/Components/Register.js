@@ -82,6 +82,16 @@ navigate("/")
             onChange={handleInputChange} 
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control
+            type="password"
+            placeholder="Confirm the password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange} 
+          />
+        </Form.Group>
+        
         <Button variant="primary" type="submit" className="w-100">
           Post Employee
         </Button>
